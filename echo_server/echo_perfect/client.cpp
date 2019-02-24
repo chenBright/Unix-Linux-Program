@@ -1,7 +1,3 @@
-//
-// Created by 陈光明 on 2019-02-24.
-//
-
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -72,3 +68,4 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
+

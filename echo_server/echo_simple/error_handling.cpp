@@ -1,7 +1,3 @@
-//
-// Created by 陈光明 on 2019-02-23.
-//
-
 #include <cstdio>
 #include <cstdlib>
 
