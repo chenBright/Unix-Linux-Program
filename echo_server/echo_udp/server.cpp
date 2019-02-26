@@ -5,30 +5,29 @@
 #include <arpa/inet.h>
 #include <sys/socket.h>
 
-const int BUF_SIZE = 1024;
+const int BUF_SIZE = 30;
 
 void error_handling(const char *message);
 
 // 接收一个参数，argv[0]为端口号
 int main(int argc, char *argv[]) {
     int server_socket;
-    int client_sock;
 
     char message[BUF_SIZE];
     ssize_t str_len;
+    socklen_t client_addr_size;
     int i;
     struct sockaddr_in server_addr;
     struct sockaddr_in client_addr;
-    socklen_t client_addr_size;
 
     if (argc != 2) {
         printf("Usage: %s <port>\n", argv[0]);
         exit(1);
     }
 
-    server_socket = socket(PF_INET, SOCK_STREAM, 0); // 创建IPv4 TCP socket
+    server_socket = socket(PF_INET, SOCK_DGRAM, 0); // 创建IPv4 TCP socket
     if (server_socket == -1) {
-        error_handling("socket() error");
+        error_handling("UDP socket create error");
     }
 
     // 地址信息初始化
@@ -42,32 +41,14 @@ int main(int argc, char *argv[]) {
         error_handling("bind() error");
     }
 
-    // 监听连接请求，最大同时连接数为5
-    if (listen(server_socket, 5) == -1) {
-        error_handling("listen() error");
-    }
-
-    client_addr_size = sizeof(client_addr);
-    for (i = 0; i < 5; ++i) {
-        // 受理客户端连接请求
-        client_sock = accept(server_socket, (struct sockaddr*)&client_addr, &client_addr_size);
-        if (client_sock == -1) {
-            error_handling("accept() error");
-        } else {
-            printf("Connect client %d\n", i + 1);
-        }
-
+    while (1) {
+        client_addr_size = sizeof(client_addr);
         // 读取来自客户端的数据
-        while ((str_len = read(client_sock, message, BUF_SIZE)) != 0) {
-            // 向客户端传输数据
-            write(client_sock, message, (size_t)str_len);
-            message[str_len] = '\0';
-            printf("client %d: message %s", i + 1, message);
-        }
+        str_len = recvfrom(server_socket, message, BUF_SIZE, 0, (struct sockaddr*)&client_addr, &client_addr_size);
+        // 发送数据给客户端
+        sendto(server_socket, message, str_len, 0, (struct sockaddr*)&client_addr, client_addr_size);
     }
-    // 关闭连接
-    close(client_sock);
-
     printf("echo server\n");
+
     return 0;
 }
