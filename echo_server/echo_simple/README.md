@@ -41,7 +41,7 @@ const int BUF_SIZE = 1024;
 
 void error_handling(const char *message);
 
-// 接收两个参数，argv[0]为端口号
+// 接收两个参数，argv[1]为端口号
 int main(int argc, char *argv[]) {
     int server_socket;
     int client_sock;
@@ -119,7 +119,7 @@ const int BUF_SIZE = 1024;
 
 void error_handling(const char *message);
 
-// 接收两个参数，argv[0]为IP地址，argv[1]为端口号
+// 接收两个参数，argv[1]为IP地址，argv[2]为端口号
 int main(int argc, char *argv[]) {
     int sock;
     struct sockaddr_in server_addr;

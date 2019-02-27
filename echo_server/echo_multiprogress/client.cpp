@@ -11,7 +11,7 @@ void error_handling(const char *messgae);
 void read_routine(int sock, char *buf);
 void write_routine(int sock, char *buf);
 
-// 接收两个参数，argv[0]为IP地址，argv[1]为端口号
+// 接收两个参数，argv[1]为IP地址，argv[2]为端口号
 int main(int argc, char *argv[]) {
     int sock;
     pid_t pid;
