@@ -12,7 +12,7 @@ const int BUF_SIZE = 30;
 void error_handling(const char *messgae);
 void read_childproc(int sig);
 
-// 接收一个参数，argv[0]为端口号
+// 接收一个参数，argv[1]为端口号
 int main(int argc, char *argcv[]) {
     int server_sock, client_sock;
     struct sockaddr_in server_addr, client_addr;

@@ -9,7 +9,7 @@ const int BUF_SIZE = 30;
 
 void error_handling(const char *message);
 
-// 接收一个参数，argv[0]为端口号
+// 接收一个参数，argv[1]为端口号
 int main(int argc, char *argv[]) {
     int server_socket;
 
