@@ -1,4 +1,4 @@
-# C++回声服务器_4-UDP connect版本
+# C++回声服务器_4-UDP connect版本客户端
 
 针对UDP套接字调用connect函数不会与对方UDP套接字建立连接，只是向UDP套接字注册目标IP和端口信息。
 

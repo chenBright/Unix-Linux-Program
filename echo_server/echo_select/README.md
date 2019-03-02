@@ -1,6 +1,6 @@
 # C++回声服务器_7-select版本服务器
 
-这次使用select函数实现服务器，而客户端直接使用[完美回声服务器的客户端](.././echo_server/echo_perfect/client.cpp)。
+这次使用select函数实现服务器，而客户端直接使用[完美回声服务器的客户端](../echo_perfect/README.md)。
 
 ## 服务器代码
 
@@ -98,4 +98,3 @@ int main(int argc, char *argv[]) {
 ## 参考
 
 [《TCP/IP网络编程》](https://book.douban.com/subject/25911735/)
-
